@@ -14,14 +14,179 @@
   }
 }
 
+
 body {
   color: var(--foreground);
   background: var(--background);
+  margin: 0;
   font-family: Arial, Helvetica, sans-serif;
 }
+
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+@keyframes glowOnHover {
+  0% {
+    opacity: 1;
+    color: white; /* Initial text color */
+  }
+  100% {
+    opacity: 1;
+    color: black; /* Text color on hover */
+    background-color: white; /* Button background color on hover */
+  }
+}
+@keyframes switchOnHover {
+  0% {
+    opacity: 1;
+    color: black; /* Initial text color */
+    background: white;
+  }
+  100% {
+    opacity: 1;
+    color: white; /* Text color on hover */
+    background-color: rgba(233, 232, 232, 0.438); /* Button background color on hover */
+  }
+}
+
+.orderButton {
+  transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.orderButton:hover {
+  animation: glowOnHover 1s forwards; /* Apply animation on hover */
+}
+
+.detailsWidget:hover{
+  animation: switchOnHover 1s forwards;
+}
+.detailsWidget{
+  animation: wipe-enter linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 40%;
+}
+.reviewWidget{
+  animation: wipe-enter linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 25%;
+}
+.textDisplay{
+  animation: textEnter linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 80%;
+}
+
+@keyframes bounceLeft {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-5px); /* Move left */
+  }
+  100% {
+    transform: translateX(0); /* Return to original position */
+  }
+}
+
+.orderButton:hover .arrow {
+  animation: bounceLeft 1s ease-in-out infinite; /* Arrow bouncing animation */
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+@keyframes wipe-enter {
+	from {
+		opacity: 0;
+    scale: 0.5;
+	}
+	to {
+		opacity: 1;
+    scale: 1;
+	}
+}
+
+
+@keyframes textEnter {
+  from{
+    opacity: 0;
+  }
+  to{
+    opacity: 1;
+  }
+}
+
+
+@keyframes slideInText {
+  from {
+    color: black;
+  }
+
+  to {
+    color: white;
+  }
+}
+
+.slideInText{
+  animation: slideInText linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 50%;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(100%); /* Start from the right */
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0); /* Slide into place */
+    opacity: 1;
+  }
+}
+
+.slideContainer{
+  animation: slide-left linear;
+  animation-timeline: view();
+  animation-range: entry 0 cover 50%;
+}
+
+@keyframes slide-top {
+  from {
+    transform: translateY(-100%); /* Start from the right */
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0); /* Slide into place */
+    opacity: 1;
+  }
+}
+
+.slideInBanners{
+  animation: slide-top linear;
+  animation-timeline: view();
+  animation-range:  entry 0 cover 30%;
+}
+.slideInBigBanners{
+  animation: slide-top linear;
+  animation-timeline: view();
+  animation-range:  entry 0 cover 20%;
+}
+
+
+@keyframes elevatedBg {
+  from {
+    transform: translateY(0%); /* Start from the left */
+  }
+  to {
+    transform: translateY(2%); /* Slide into place */
+  }
+}
+
+.landingBg {
+  animation: elevatedBg 5s ease-in-out infinite alternate; /* Added duration and alternate direction */
 }
